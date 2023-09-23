@@ -7,3 +7,9 @@ class Stop(models.Model):
     long = models.FloatField()
     order = models.IntegerField()
     direction = models.BooleanField()
+
+
+class Bus(models.Model):
+    bus_number = models.IntegerField()
+    lat = models.FloatField()
+    long = models.FloatField()

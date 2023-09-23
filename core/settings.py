@@ -95,3 +95,8 @@ STATIC_URL = "static/"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+from map.task import find
+
+find(1,400)

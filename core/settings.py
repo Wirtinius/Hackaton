@@ -6,7 +6,7 @@ SECRET_KEY = "django-insecure-acn%)ijl&t1gs53mq0r!pbo_+g@*#ax2(bk5k)xptgop6nj5tw
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 INSTALLED_APPS = [
@@ -17,10 +17,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "map"
+    "corsheaders",
+    "map",
 ]
 
-ASGI_APPLICATION = 'core.asgi.application'
+ASGI_APPLICATION = "core.asgi.application"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -30,7 +31,22 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware"
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:8080"
+]
+
+CORS_ALLOW_HEADERS = [
+    "ngrok-skip-browser-warning",
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = "core.urls"
 
@@ -53,14 +69,12 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -95,8 +109,3 @@ STATIC_URL = "static/"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-from map.task import find
-
-find(1,400)

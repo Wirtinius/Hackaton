@@ -1,17 +1,23 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status 
+from rest_framework import status
 
 from asgiref.sync import async_to_sync
 
-from .parser import Parser
+from .models import Stop, Route
+from .serializers import StopSerializer, RouteSerializer
 
-parser = Parser()
-        
-    
+
 class StopsView(APIView):
-    @async_to_sync
-    async def get(self, request, route_id):
-        stops = await parser.get_stops(route_id)
-        return Response(stops, status=status.HTTP_200_OK)
+    def get(self, request):
+        stops = Stop.objects.all()
+        serializer = StopSerializer(stops, many=True)
+        return Response(serializer.data)
+
+
+class RoutesView(APIView):
+    def get(self, request, bus_number):
+        routes = Route.objects.filter(bus_number=bus_number)
+        serializer = RouteSerializer(routes, many=True)
+        return Response(serializer.data)

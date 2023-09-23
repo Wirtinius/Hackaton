@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Stop(models.Model):
     code = models.CharField(max_length=10)
     name = models.CharField(max_length=100)
@@ -13,3 +14,10 @@ class Bus(models.Model):
     bus_number = models.IntegerField()
     lat = models.FloatField()
     long = models.FloatField()
+
+
+class Route(models.Model):
+    bus_number = models.IntegerField()
+    lat = models.FloatField()
+    long = models.FloatField()
+    direction = models.BooleanField()

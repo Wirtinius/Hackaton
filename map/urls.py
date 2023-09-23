@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import StopsView
+from .views import StopsView, RoutesView
 
 urlpatterns = [
-    path("stops/<int:route_id>", StopsView.as_view(), name="Stop-list"),
+    path("stops/", StopsView.as_view(), name="Stop-list"),
+    path("routes/<int:bus_number>/", RoutesView.as_view(), name="Route-list"),
 ]

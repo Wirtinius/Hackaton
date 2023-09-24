@@ -27,11 +27,7 @@ def update_bus_locations():
                 if bus["Direction"] is None:
                     continue
 
-                print(bus)
-
                 stop_code = convert_stop_code_to_string(bus["StopCode"])
-
-                print(stop_code)
 
                 stop, created = Stop.objects.get_or_create(code=stop_code)
 

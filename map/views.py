@@ -5,8 +5,8 @@ from rest_framework import status
 
 from asgiref.sync import async_to_sync
 
-from .models import Stop, Route
-from .serializers import StopSerializer, RouteSerializer
+from .models import Stop, Route, Bus
+from .serializers import StopSerializer, RouteSerializer, BusSerializer
 
 
 class StopsView(APIView):
@@ -34,3 +34,14 @@ class RoutesView(APIView):
         }
 
         return Response(response)
+
+
+class BusesView(APIView):
+    def get(self, request, bus_number=None):
+        if bus_number:
+            buses = Bus.objects.filter(bus_number=bus_number)
+        else:
+            buses = Bus.objects.all()
+
+        serializer = BusSerializer(buses, many=True)
+        return Response(serializer.data)

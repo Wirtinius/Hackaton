@@ -4,7 +4,7 @@ import openai
 from django.core.files.storage import FileSystemStorage
 
 
-openai.api_key = "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"
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
 def transcribe_audio(audio_file):    

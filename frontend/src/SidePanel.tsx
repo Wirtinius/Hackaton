@@ -5,7 +5,7 @@ import { sendToServer } from './service';
 
 import ClosestBuses from './ClosestBuses';
 
-const SidePanel = ({ active }, { active: boolean }) => {
+const SidePanel = ({ active }: { active: boolean }) => {
   const [route, setRoute] = useState<number>(0);
   const [closest, setClosest] = useState(false);
   const addAudioElement = async (blob: Blob) => {
@@ -22,6 +22,10 @@ const SidePanel = ({ active }, { active: boolean }) => {
         const bus = JSON.parse(parsed.args);
         setClosest(false);
         setRoute(bus.bus_number);
+      } else if (parsed.function == 'message') {
+        alert(parsed.args);
+      } else if (parsed.function == 'videocall') {
+        window.location.href = "http://localhost:8000/assistant/video";
       }
     }
   };

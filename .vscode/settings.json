@@ -9,5 +9,9 @@
         "**/__pycache__": true,
         "**/.idea": true
     },
-    "hide-files.files": []
+    "hide-files.files": [],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }

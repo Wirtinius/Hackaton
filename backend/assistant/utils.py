@@ -61,6 +61,15 @@ def generate_answer(transcript: str):
                     "properties": {},
                     "required": [],
                 },
+            },
+            {
+                "name": "videocall",
+                "description": "Make a videocall to the user.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                },
             }
         ],
     )

@@ -18,3 +18,7 @@ class GenerateView(APIView):
         function, args = generate_answer(transcription)
         
         return Response({"function": function, "args": args})
+
+
+def video(request):
+    return render(request, "WEB_UIKITS.html")

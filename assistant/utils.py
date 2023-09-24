@@ -41,7 +41,7 @@ def generate_answer(transcript: str):
         functions=[
             {
                 "name": "get_bus_route",
-                "description": "Get the bus route and current locations of the buses",
+                "description": "Get the bus route by the bus number. User must specify the bus number.",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -53,11 +53,21 @@ def generate_answer(transcript: str):
                     "required": ["bus_number"],
                 },
             },
+            {
+                "name": "get_closest_buses",
+                "description": "Get the closest buses to the user. If user doesn't specify the bus number, return the closest buses of all routes. User must not specify the bus number.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                },
+            }
         ],
-        max_tokens=300,
     )
 
     response_message = response["choices"][0]["message"]
+    
+    print(response_message)
 
     if response_message.get("function_call"):
         function_name = response_message["function_call"]["name"]

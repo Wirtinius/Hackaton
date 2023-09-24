@@ -40,7 +40,7 @@ class BusesView(APIView):
             lat = request.query_params.get("lat")
             long = request.query_params.get("long")
             
-            radius = float(500) / 1000.0
+            radius = float(5000) / 1000.0
 
             query = """SELECT id, (6367*acos(cos(radians(%2f))
                     *cos(radians(lat))*cos(radians(long)-radians(%2f))
